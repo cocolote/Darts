@@ -24,10 +24,12 @@ function refreshList(players) {
   playersHTML.push('<li class="row">');
   playersHTML.push('<h6 class="table-columns small-2 column ranking">');
   playersHTML.push('Ranking</h6">');
-  playersHTML.push('<h6 class="table-columns small-2 column name">');
+  playersHTML.push('<h6 class="table-columns small-7 column name">');
   playersHTML.push('Name</h6">');
   playersHTML.push('<h6 class="table-columns small-2 column points">');
   playersHTML.push('Points</h6"></li>');
+  playersHTML.push('<h6 class="table-columns small-1 column points">');
+  playersHTML.push('</h6"></li>');
 
   var currentPoints = 0;
   var rank = 1;
@@ -38,10 +40,14 @@ function refreshList(players) {
     playersHTML.push('<li class="row">');
     playersHTML.push('<h6 class="table-columns small-2 column ranking">');
     playersHTML.push(rank+'</h6">');
-    playersHTML.push('<h6 class="table-columns small-2 column name">');
+    playersHTML.push('<h6 class="table-columns small-7 column name">');
     playersHTML.push(players[i].name+'</h6">');
     playersHTML.push('<h6 class="table-columns small-2 column points">');
     playersHTML.push(players[i].points+'</h6"></li>');
+    playersHTML.push('<h6 class="table-columns small-1 column points">');
+    playersHTML.push('<a class="fi-trash" data-remote="true" rel="nofollow"
+     data-method="delete"')
+    playersHTML.push('</h6"></li>');
   }
   return playersHTML;
 }
