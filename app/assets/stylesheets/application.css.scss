@@ -21,5 +21,8 @@
 
 body {
   font-family: 'Inconsolata';
-  background-color: #444;
+  background: -webkit-linear-gradient(#955251, #472727);
+  background: -moz-linear-gradient(#955251, #472727);
+  background: -o-linear-gradient(#955251, #472727);
+  background: linear-gradient(#955251, #472727);
 }

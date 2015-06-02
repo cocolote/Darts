@@ -4,8 +4,8 @@ $('#new_game').on('ajax:success', function(e, game){
   gameHTML.push('<li class="medium-3 columns games"><h3>');
   gameHTML.push('<a href=/games/'+game.id+'/players>');
   gameHTML.push(game.name+'</a></h3></li>');
-  debugger;
-  $('#game_name').value('');
+
+  $('#game_name').val('');
   $('#games-names-list').append(gameHTML.join(''));
 });
 

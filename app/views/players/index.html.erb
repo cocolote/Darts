@@ -5,7 +5,7 @@
   <div id="newplayer-container">
     <%= form_for([@game, @player], remote: true) do |f| %>
       <div id="text-field-container" class="small-10 columns">
-        <%= f.text_field :name, placeholder: "Player name, score" %>
+        <%= f.text_field :name, placeholder: "First and last names, score" %>
       </div>
       <div id="botton-container" class="small-2 columns">
         <%= f.submit "New", id: "new-player-button", class: "button" %>
@@ -15,16 +15,21 @@
   <div id="players-scores-table">
     <ul>
       <li class="row">
-        <h6 id="ranking" class="table-columns small-2 column">Ranking</h6>
-        <h6 id="name" class="table-columns small-8 columns">Name</h6>
-        <h6 id="points" class="table-columns small-2 columns">Points</h6>
+        <h6 class="table-columns small-2 column ranking">Ranking</h6>
+        <h6 class="table-columns small-7 columns name">Name</h6>
+        <h6 class="table-columns small-2 columns points">Points</h6>
+        <h6 class="table-columns small-1 columns points"></h6>
       </li>
       <% if @players %>
+        <% current_points = 0; rank = 1 %>
         <% @players.each do |player| %>
+          <% current_points > player.points ? rank += 1 : rank %>
           <li class="row">
-            <h6 id="ranking" class="table-columns small-2 column">1.</h6>
-            <h6 id="name" class="table-columns small-8 columns"><%= player.name%></h6>
-            <h6 id="points" class="table-columns small-2 columns"><%= player.points %></h6>
+            <h6 id="ranking" class="table-columns small-2 column ranking"><%= rank %></h6>
+            <h6 id="name" class="table-columns small-7 columns name"><%= player.name%></h6>
+            <h6 id="points" class="table-columns small-2 columns points"><%= player.points %></h6>
+            <h6 class="table-columns small-1 columns points"><%= link_to "", game_player_path(@game, player), class: "fi-trash", remote: true, method: :delete %></h6>
+            <% current_points = player.points %>
           </li>
         <% end %>
       <% end %>

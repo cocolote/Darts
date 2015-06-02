@@ -4,7 +4,7 @@ class PlayersController < ApplicationController
   def index
     @game = Game.find(params[:game_id])
     @player = Player.new
-    @players = @game.players
+    @players = @game.players.order(points: :desc)
   end
 
   def create
@@ -13,11 +13,9 @@ class PlayersController < ApplicationController
     game = Game.find(params[:game_id])
     new_score = Player.find_or_create_by(name: full_name, game: game)
     new_score.points += pts.to_i
-    
-    binding.pry
     if new_score.save
       respond_to do |format|
-        format.json { render json: { players: players } }
+        format.json { render json: game.players.order(points: :desc) }
       end
     else
       respond_to do |format|
@@ -25,6 +23,14 @@ class PlayersController < ApplicationController
           { errors: new_score.errors.full_messages }, status: 403 
         }
       end
+    end
+  end
+
+  def destroy
+    game = Game.find(params[:game_id])
+    Player.find_by(id: params[:id], game_id: params[:game_id]).delete
+    respond_to do |format|
+      format.json { render json: game.players.order(points: :desc) }
     end
   end
 

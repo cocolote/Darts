@@ -6,7 +6,8 @@
   <h1 id="title">Darts</h1>
 </div>
 <div id="games-container">
-  <div id="newgame-container" class="row collapse">
+  <fieldset id="newgame-container" class="row collapse">
+  <legend>New Game</legend>
     <%= form_for(@game, remote: true) do |f| %>
       <div id="text-field-container" class="small-10 columns">
         <%= f.text_field :name, placeholder: "Enter the name of the new game" %>
@@ -15,7 +16,7 @@
         <%= f.submit "New", id: "new-game-button", class: "button" %>
       </div>
     <% end %>
-  </div>
+  </fieldset>
   <% if @games %>
     <div class="games-names-container row collapse">
       <ul id="games-names-list">
