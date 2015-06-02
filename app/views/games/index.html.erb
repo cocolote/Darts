@@ -1,0 +1,32 @@
+<div id="banner-background">
+  <div id="banner-shade">
+  </div>
+</div>
+<div id="title-container">
+  <h1 id="title">Darts</h1>
+</div>
+<div id="games-container">
+  <div id="newgame-container" class="row collapse">
+    <%= form_for(@game, remote: true) do |f| %>
+      <div id="text-field-container" class="small-10 columns">
+        <%= f.text_field :name, placeholder: "Enter the name of the new game" %>
+      </div>
+      <div id="botton-container" class="small-2 columns">
+        <%= f.submit "New", id: "new-game-button", class: "button" %>
+      </div>
+    <% end %>
+  </div>
+  <% if @games %>
+    <div class="games-names-container row collapse">
+      <ul id="games-names-list">
+        <% @games.each do |game| %>
+          <li class="medium-3 columns games">
+            <h3>
+              <%= link_to game.name, game_players_path(game.id) %>
+            </h3>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+</div>

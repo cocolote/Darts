@@ -1,0 +1,119 @@
+#back-to-games-bar {
+  margin: -3px 0 0 0;
+  background-image: url(/assets/wall_flower.png);
+  background-size: 1em;
+  height: 4em;
+  -webkit-box-shadow: 0 5px 8px -3px #000;
+
+  h3 {
+    font-family: 'Pacifico', cursive;
+    color: #fff;
+    margin: 0;
+    padding: 0.45em 0.5em 0.45em 0.5em;
+    width: 17%;
+    text-shadow: 0 0 3px  #fff,
+                 0 0 20px #FF1177;
+    -webkit-transition: all 0.8s;
+    -moz-transition: all 0.8s;
+    -o-transition: all 0.8s;
+    transition: all 0.8s;
+
+    a{
+      color: #fff;
+      -webkit-transition: all 0.8s;
+      -moz-transition: all 0.8s;
+      -o-transition: all 0.8s;
+      transition: all 0.8s;
+    }
+
+    &:hover {
+      text-shadow: 0 0 7px  #fff,
+                   0 0 20px #FF1177;
+
+      a {
+        text-shadow: 0 0 7px  #fff,
+                     0 0 20px #FF1177;
+      }
+    }
+  }
+}
+
+#players-container {
+  padding-top: 4em;
+
+  #newplayer-container{
+    width: 75%;
+    margin: 1em 0 3em 0;
+    margin-left: auto;
+    margin-right: auto;
+    color: #000;
+
+    #text-field-container {
+      padding: 0;
+      padding-left: 1.7em;
+      border-left-bottom-radius: 1em;
+    
+      #player_name {
+        font-size: 1.5em;
+        height: 1.67em;
+        border: 2px solid #1de9b6;
+        background-color: #ddd;
+      }
+    }
+  }
+
+  #botton-container {
+    padding: 0;
+    float: left;
+
+    #new-player-button {
+      border: 2px solid #1de9b6;
+      color: #1de9b6;
+      height: 2.5em;
+      margin-left: -1px;
+      padding: 0.5em 2em 0.5em 2em;
+      background-color: transparent;
+      -webkit-transition: all 0.8s;
+      -moz-transition: all 0.8s;
+      -o-transition: all 0.8s;
+      transition: all 0.8s;
+
+      &:hover {
+        color: #fff;
+        background-color: #1de9b6;
+      }
+    }
+  }
+
+  #players-scores-table {
+    width: 80%;
+    margin: 8em auto 5em auto;
+    border: 2px solid #1de9b6;
+    background-color: transparent;
+
+    ul {
+      list-style-type: none;
+      margin: 0;
+    }
+
+    .table-columns {
+      display: inline-block;
+      border: 1px solid red;
+      height: 6vh;
+    }
+
+    .ranking {
+      width: 10%;
+    }
+    
+    .name {
+      width: 80%;
+      background-color: transparent;
+    }
+
+    .points {
+      width: 10%;
+    }
+
+  }
+}

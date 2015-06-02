@@ -1,0 +1,18 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
+
+development:
+  <<: *default
+  database: play_darts_development
+
+test:
+  <<: *default
+  database: play_darts_test
+
+production:
+  <<: *default
+  database: play_darts_production
+  username: play_darts
+  password: <%= ENV['PLAY_DARTS_DATABASE_PASSWORD'] %>

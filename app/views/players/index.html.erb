@@ -1,0 +1,33 @@
+<div id="back-to-games-bar">
+  <h3><i class="fi-arrow-left"></i> <%= link_to "Darts Games", root_path %></h3>
+</div>
+<div id="players-container" class="row collapse">
+  <div id="newplayer-container">
+    <%= form_for([@game, @player], remote: true) do |f| %>
+      <div id="text-field-container" class="small-10 columns">
+        <%= f.text_field :name, placeholder: "Player name, score" %>
+      </div>
+      <div id="botton-container" class="small-2 columns">
+        <%= f.submit "New", id: "new-player-button", class: "button" %>
+      </div>
+    <% end %>
+  </div>
+  <div id="players-scores-table">
+    <ul>
+      <li class="row">
+        <h6 id="ranking" class="table-columns small-2 column">Ranking</h6>
+        <h6 id="name" class="table-columns small-8 columns">Name</h6>
+        <h6 id="points" class="table-columns small-2 columns">Points</h6>
+      </li>
+      <% if @players %>
+        <% @players.each do |player| %>
+          <li class="row">
+            <h6 id="ranking" class="table-columns small-2 column">1.</h6>
+            <h6 id="name" class="table-columns small-8 columns"><%= player.name%></h6>
+            <h6 id="points" class="table-columns small-2 columns"><%= player.points %></h6>
+          </li>
+        <% end %>
+      <% end %>
+    </ul>
+  </div>
+</div>
