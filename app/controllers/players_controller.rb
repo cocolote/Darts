@@ -15,7 +15,8 @@ class PlayersController < ApplicationController
     new_score.points += pts.to_i
     if new_score.save
       respond_to do |format|
-        format.json { render json: game.players.order(points: :desc) }
+        format.json { render json: { players: game.players.order(points: :desc),
+                                     game_id: game.id } }
       end
     else
       respond_to do |format|
@@ -27,10 +28,11 @@ class PlayersController < ApplicationController
   end
 
   def destroy
-    game = Game.find(params[:game_id])
     Player.find_by(id: params[:id], game_id: params[:game_id]).delete
+    game = Game.find(params[:game_id])
     respond_to do |format|
-      format.json { render json: game.players.order(points: :desc) }
+      format.json { render json: { players: game.players.order(points: :desc),
+                                   game_id: game.id } }
     end
   end
 
