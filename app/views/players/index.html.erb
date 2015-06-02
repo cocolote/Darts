@@ -1,8 +1,17 @@
 <div id="back-to-games-bar">
-  <h3><i class="fi-arrow-left"></i> <%= link_to "Darts Games", root_path %></h3>
+  <div id="back-to-games" class="small-2 columns bar-title">
+    <h3 class="bar-title"><i class="fi-arrow-left"></i> <%= link_to "Darts Games", root_path %>
+    </h3>
+  </div>
+  <div id="game-name" class="small-8 columns">
+    <h1 class="bar-title">
+      <%= @game.name %>
+    </h1>
+  </div>
 </div>
-<div id="players-container" class="row collapse">
-  <div id="newplayer-container">
+<div id="players-container">
+  <fieldset id="newplayer-container" class="row collapse">
+  <legend>Add Players or Points</legend>
     <%= form_for([@game, @player], remote: true) do |f| %>
       <div id="text-field-container" class="small-10 columns">
         <%= f.text_field :name, placeholder: "First and last names, score" %>
@@ -11,24 +20,24 @@
         <%= f.submit "New", id: "new-player-button", class: "button" %>
       </div>
     <% end %>
-  </div>
+  </fieldset>
   <div id="players-scores-table">
     <ul>
-      <li class="row">
+      <li class="row table-row">
         <h6 class="table-columns small-2 column ranking">Ranking</h6>
         <h6 class="table-columns small-7 columns name">Name</h6>
         <h6 class="table-columns small-2 columns points">Points</h6>
-        <h6 class="table-columns small-1 columns points"></h6>
+        <h6 class="table-columns small-1 columns delete"></h6>
       </li>
       <% if @players %>
         <% current_points = 0; rank = 1 %>
         <% @players.each do |player| %>
           <% current_points > player.points ? rank += 1 : rank %>
-          <li class="row">
+          <li class="row table-row">
             <h6 id="ranking" class="table-columns small-2 column ranking"><%= rank %></h6>
             <h6 id="name" class="table-columns small-7 columns name"><%= player.name%></h6>
-            <h6 id="points" class="table-columns small-2 columns points"><%= player.points %></h6>
-            <h6 class="table-columns small-1 columns points"><%= link_to "", game_player_path(@game, player), class: "fi-trash", remote: true, method: :delete %></h6>
+            <h6 id="points" class="table-columns small-2 columns points-numbers"><%= player.points %></h6>
+            <h6 class="table-columns small-1 columns delete"><%= link_to "", game_player_path(@game, player), class: "fi-trash", remote: true, method: :delete %></h6>
             <% current_points = player.points %>
           </li>
         <% end %>

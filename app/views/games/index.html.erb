@@ -23,8 +23,19 @@
         <% @games.each do |game| %>
           <li class="medium-3 columns games">
             <h3>
-              <%= link_to game.name, game_players_path(game.id) %>
+              <%= link_to game.name.upcase, game_players_path(game.id) %>
             </h3>
+            <% if !game.players.empty? %>
+              <h1 class="game-points">
+                <%= game.players.order("points DESC").first.points %>
+              </h1>
+              <h5 class="game-player-name">
+                <%= game.players.order("points DESC").first.name %>
+              </h5>
+            <% else %>
+              <h1 class="game-points">0</h1>
+              <h5 class="game-player-name">No Players</h5>
+            <% end %>
           </li>
         <% end %>
       </ul>
